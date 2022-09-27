@@ -11,11 +11,6 @@ export const Timer = () => {
   const minRef = useRef();
   const secRef = useRef();
 
-  // Add method
-  yup.addMethod(yup.number, "stripEmptyField", function () {
-    return this.transform((value) => (value === "" ? undefined : value));
-  });
-
   const schema = yup.object().shape({
     hour: yup
       .number("Must be a number")
@@ -133,7 +128,11 @@ export const Timer = () => {
         <p style={{ color: "red" }}> {errors.hour?.message}</p>
         <p style={{ color: "red" }}> {errors.second?.message}</p>
 
-        <button onClick={() => setRunning(!running)} disabled={!isDisable}>
+        <button
+          className="border-2 rounded-none border-indigo-500 px-4 py-0.5 shadow-md hover:bg-blue-400"
+          onClick={() => setRunning(!running)}
+          disabled={!isDisable}
+        >
           {running ? "Stop" : "Start"}
         </button>
       </form>

@@ -1,14 +1,24 @@
-import { Stopwatch } from "./components/Stopwatch";
-import { Timer } from "./components/Timer";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+import { Home } from "./pages/Home";
+import { Programs } from "./pages/Programs";
+import { Navbar } from "./components/Navbar/Navbar";
+
+
+
 
 function App() {
+  
   return (
-    <div className="App">
-      <Stopwatch />
-      <hr />
-      <Timer />
-    </div>
+
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/programs" element={<Programs />} />
+        </Routes>
+      </Router>
+
   );
 }
 

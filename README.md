@@ -28,3 +28,19 @@ To administrate your programs.
 ### What can be enhanced ?
 
 • Change the input number by counter for ex : to improve security, avoid bugs that are data related.
+
+## 27/09
+
+### Done : 
+
+• TailwindCss is installed. 
+• We can add a Program to the State.
+
+### To Fix :
+
+• The running state is still working even when data in the field are incorrect (when fields are empty).
+
+### What can be enhanced ?
+
+• Change the input number by counter for ex : to improve security, avoid bugs that are data related.
+•As TailwindCss is installed, I must reviewed how I desgined the components to have less to do in the future : I need to use more components to stylised them and use them correctly.
