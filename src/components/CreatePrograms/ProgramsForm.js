@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 export const ProgramsForm = (props) => {
   const { setIsDisplayed } = props.isDisplayed;
+  const { id, setId } = props.idProgram;
   const { program, setProgram } = props.program;
 
   //const [newProgram, setNewProgram] = useState({});
@@ -26,35 +27,60 @@ export const ProgramsForm = (props) => {
 
   const handleForm = (data, e) => {
     e.preventDefault();
+    if (id === null) {
+      setProgram([
+        ...program,
+        {
+          programName: data.programName,
+          taskName: data.taskName,
+          taskDescription: data.taskDescription,
+          taskTimer: data.taskTimer,
+        },
+      ]);
+    } else {
+      const newProgramLine = [...program];
+      newProgramLine[id] = {
+        programName: data.programName,
+        taskName: data.taskName,
+        taskDescription: data.taskDescription,
+        taskTimer: data.taskTimer,
+      };
 
+      setProgram(newProgramLine);
+      setId(null);
+      //console.log(newProgramLine);
+    }
+    //dans setProgram(id, {object})
     /* setNewProgram({
       programName: data.programName,
       taskName: data.taskName,
       taskDescription: data.taskDescription,
       taskTimer: data.taskTimer,
     }); */
-    setProgram([
-      ...program,
-      {
-        programName: data.programName,
-        taskName: data.taskName,
-        taskDescription: data.taskDescription,
-        taskTimer: data.taskTimer,
-      },
-    ]);
-};
+  };
 
-useEffect(() => {
-  if (formState.isSubmitSuccessful) {
-    reset({
-      programName: "",
-      taskName: "",
-      taskDescription: "",
-      taskTimer: "",
-    });
-    setIsDisplayed(false);
-  }
-}, [formState, reset, setIsDisplayed]);
+  useEffect(() => {
+    if (formState.isSubmitSuccessful) {
+      reset({
+        programName: "",
+        taskName: "",
+        taskDescription: "",
+        taskTimer: "",
+      });
+      setIsDisplayed(false);
+    }
+  }, [formState, reset, setIsDisplayed]);
+
+  useEffect(() => {
+    if (id !== null) {
+      reset({
+        programName: program[id].programName,
+        taskName: program[id].taskName,
+        taskDescription: program[id].taskDescription,
+        taskTimer: program[id].taskTimer,
+      });
+    }
+  }, [id, program, reset, setIsDisplayed]);
 
   return (
     <div>
@@ -63,21 +89,25 @@ useEffect(() => {
           type="text"
           placeholder="Programs Name..."
           {...register("programName")}
+          className="border border-slate-500"
         />
 
         <input
           type="text"
           placeholder="Task Name..."
           {...register("taskName")}
+          className="border border-slate-500"
         />
         <textarea
           placeholder="Task Description"
           {...register("taskDescription")}
+          className="border border-slate-500"
         />
         <input
           type="text"
           placeholder="Set a Timer..."
           {...register("taskTimer")}
+          className="border border-slate-500"
         />
         <p style={{ color: "red" }}> {errors.programName?.message}</p>
         <p style={{ color: "red" }}> {errors.taskName?.message}</p>
