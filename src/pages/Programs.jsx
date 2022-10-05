@@ -1,6 +1,7 @@
 import { CreatePrograms } from "../components/CreatePrograms/CreatePrograms";
 import { useState, useEffect } from "react";
-import { AddPrograms } from "../components/CreatePrograms/AddPrograms";
+import { DisplayPrograms } from "../components/DisplayPrograms/DisplayPrograms";
+import { Button } from "../components/Btn/Button";
 
 export const Programs = () => {
   const [isDisplayed, setIsDisplayed] = useState(false);
@@ -14,44 +15,45 @@ export const Programs = () => {
     },
   ]);
 
+  const exempleProgram = {
+    name: "Jambe",
+    day: "Mardi / Jeudi",
+    breakTime: "30s entre chaque série",
+    repSeries: 3,
+    Serie: {
+      exo1: {
+        exo1Name: "Squat",
+        rep: 20,
+      },
+      exo2: {
+        exo2Name: "Burpees",
+        rep: 10,
+      },
+      exo3: {
+        exo3Name: "Pompe",
+        rep: 20,
+      },
+      exo4: {
+        exo4Name: "Squat Sautés",
+        rep: 15,
+      },
+    },
+  };
+
+
+
   return (
     <>
       <div>
-        <AddPrograms onClick={() => setIsDisplayed(true)} />
-        {program.map((line, i) => (
-          <div key={"div" + i}>
-            <p key={i}>{line.programName}</p>
-            <button
-              key={"e" + i}
-              onClick={() => {
-                setId(i);
-                setIsDisplayed(true);
-              }}
-              className="border px-2 bg-blue-100"
-            >
-              Edit
-            </button>
-            <button
-              key={"d" + i}
-              onClick={() => {
-                const deleteProg = program.filter((l) => l !== line);
-                setProgram(deleteProg);
-              }}
-              className="border px-2 bg-blue-100"
-            >
-              Delete
-            </button>
-          </div>
-        ))}
-
-        {/* <button
-          onClick={() => {
-            console.log(program);
-          }}
-          className="border px-2 bg-blue-100"
-        >
-          log
-        </button> */}
+        <Button onClick={() => setIsDisplayed(true)} float={true}>
+          Add programs
+        </Button>
+        <DisplayPrograms
+          program={{ program, setProgram }}
+          setProgramId={{ setId }}
+          setIsDisplayed={{ setIsDisplayed }}
+          ex={exempleProgram}
+        />
       </div>
       <div>
         {isDisplayed && (

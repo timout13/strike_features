@@ -31,9 +31,9 @@ To administrate your programs.
 
 ## 27/09
 
-### Done : 
+### Done :
 
-• TailwindCss is installed. 
+• TailwindCss is installed.
 • We can add a Program to the State.
 
 ### To Fix :
@@ -47,9 +47,26 @@ To administrate your programs.
 
 ## 30/09
 
-### Done : 
+### Done :
 
 • CRUD completed
+
+### To Fix :
+
+• The running state is still working even when data in the field are incorrect (when fields are empty).
+• Create the full database.
+
+### What can be enhanced ?
+
+• Change the input number by counter for ex : to improve security, avoid bugs that are data related.
+•As TailwindCss is installed, I must reviewed how I desgined the components to have less to do in the future : I need to use more components to stylised them and use them correctly.
+
+## 04/09
+
+### Done :
+
+• Start of tailwind integration
+• Turn some code into component : btn, input
 
 ### To Fix :
 
